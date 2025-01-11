@@ -1,0 +1,51 @@
+CREATE DATABASE Cooperativa;
+use cooperativa;
+
+CREATE TABLE Funcionarios(
+ fun_nome VARCHAR(75) NOT NULL,
+ fun_telefone VARCHAR(15) NOT NULL,
+ fun_email VARCHAR(50) NOT NULL,
+ fun_senha VARCHAR(60) NOT NULL,
+ PRIMARY KEY (fun_email));
+
+CREATE TABLE Clientes(
+ cli_nome VARCHAR(75) NOT NULL,
+ cli_telefone VARCHAR(15) NOT NULL,
+ cli_email VARCHAR(50) NOT NULL,
+ cli_senha VARCHAR(60) NOT NULL,
+ PRIMARY KEY (cli_email));
+
+CREATE TABLE Produtos(
+ pro_cod INT NOT NULL AUTO_INCREMENT,
+ pro_nome VARCHAR(20) NOT NULL,
+ pro_preco DECIMAL(10,2) NULL,
+ pro_qtde INT NULL,
+ pro_dt_validade DATE NULL,
+ pro_foto VARCHAR(50) NOT NULL,
+ PRIMARY KEY (pro_cod));
+
+CREATE TABLE Reservas(
+ resv_cod INT AUTO_INCREMENT NOT NULL,
+ resv_data DATE NOT NULL,
+ resv_tipo VARCHAR(20) NOT NULL,
+ resv_total DECIMAL(10,2) NOT NULL,
+ cli_email VARCHAR(50) NOT NULL,
+ resv_status VARCHAR(10) NOT NULL,
+ PRIMARY KEY (resv_cod));
+
+CREATE TABLE Itens_Reserva(
+ resv_cod INT NOT NULL,
+ pro_cod INT NOT NULL,
+ itrer_cod INT AUTO_INCREMENT NOT NULL,
+ itrer_qtde INT NOT NULL,
+ itrer_preco DECIMAL(10,2) NOT NULL,
+ PRIMARY KEY (itrer_cod));
+
+CREATE TABLE Carrinhos(
+ pro_cod INT NOT NULL,
+ cli_email VARCHAR(50) NOT NULL,
+ itcar_qtde INT NOT NULL,
+ itcar_preco DECIMAL(10,2) NOT NULL,
+ PRIMARY KEY (cli_email, pro_cod));
+
+ insert into Funcionarios (fun_nome, fun_telefone, fun_email, fun_senha) values ('Admin', '(11) 11111-1111', 'admin@gmail.com', '$2y$10$bHEZFT0BuGXa60KoD35ive.qtSkW79/7XNLP.kdhCpkC9AqTlSisO')
